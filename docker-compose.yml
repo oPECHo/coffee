@@ -1,0 +1,41 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: coffee-mongodb
+    volumes:
+      - ../deployment/coffee/mongodb/data/db:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    networks:
+      - default
+    ports:
+      - 27017:27017
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  web:
+    build: .
+    image: coffee-image
+    container_name: coffee-web
+    volumes:
+      - ../deployment:/deployment
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 9000:9000
+    links:
+      - mongodb
+    networks:
+      - default
+    restart: always
+    environment:
+      COFFEE_SETTINGS: /app/coffee-production.cfg
+    command: /venv/bin/gunicorn -w 4 --keep-alive 10 --timeout 1200 --log-level=DEBUG --bind 0.0.0.0:8080 "coffee.web:create_app()"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  default:

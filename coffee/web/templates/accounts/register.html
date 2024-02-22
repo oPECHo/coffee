@@ -1,0 +1,72 @@
+{% extends "/base/base-layout.html" %}
+
+{% block body %}
+<div class="ui middle aligned center aligned grid" style="height: 100vh;">
+    <div class="column"
+        style="max-width: 550px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 20px;">
+        <h2 class="ui primary header">
+            <i class="sign in alternate icon"></i>
+            <div class="content">
+                Sign-Up to your account
+            </div>
+        </h2>
+
+        <form method="POST" class="ui form" action="{{ request.path }}">
+            {{ form.csrf_token }}
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    {{ form.username(class="prompt" ,placeholder="Username") }}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    {{ form.password(class="prompt" ,placeholder="Password อย่างน้อย 6 ตัว") }}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="envelope icon"></i>
+                    {{ form.email(class="prompt" ,placeholder="Example@email.com") }}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    {{ form.first_name(class="prompt" ,placeholder="First name") }}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    {{ form.last_name(class="prompt" ,placeholder="Last name") }}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="ui primary button">Register</button>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui horizontal divider mt-4">
+                    Or
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="d-flex justify-content-center">
+                    <a href="/login" class="ui green button">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

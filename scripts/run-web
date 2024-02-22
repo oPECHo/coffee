@@ -1,0 +1,3 @@
+#!/bin/sh
+
+FLASK_DEBUG=true COFFEE_SETTINGS=$(pwd)/coffee-development.cfg coffee-web -H 0.0.0.0 -d

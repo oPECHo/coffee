@@ -1,0 +1,51 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+
+<div class="ui four column grid">
+    {% for menu in menus | sort(attribute='updated_date', reverse=True) %}
+    <div class="column">
+        <div class="ui special cards">
+            <div class="card">
+                <div class="blurring dimmable image">
+                    <div class="ui dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <a class="ui inverted button">Read
+                                    more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="{{ url_for('menus.get_image', document_id=menu.id, filename=menu.document.filename) }}"
+                        style="height: 35vh;" />
+                </div>
+                <div class="content">
+                    <div class="header" style="margin-bottom: 5%;">{{ menu.name }}</div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">
+                        <i class="clock outline icon"></i>
+                        {{ menu.updated_date.strftime("%H:%M:%S") }}
+                    </span>
+                    <span class="left floated">
+                        <i class="calendar alternate outline icon"></i>
+                        {{ menu.updated_date.strftime("%d-%h-%Y") }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+{% block additional_js %}
+<script>
+    $('.special.cards .image').dimmer({
+        // As hover is not working on mobile, you might use click on those devices as fallback
+        on: 'ontouchstart' in document.documentElement ? 'click' : 'hover'
+    });
+</script>
+
+{% endblock %}

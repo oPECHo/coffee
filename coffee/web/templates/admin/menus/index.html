@@ -1,0 +1,47 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<a class="fluid huge ui inverted primary button" href="{{ url_for('admin.menus.menus_create') }}"
+    style="margin-bottom: 1%;">Create</a>
+<div class="ui four cards">
+    {% for menu in menus | sort(attribute='updated_date', reverse=True) %}
+
+    <div class="card">
+        <div class="image">
+            <img src="{{ url_for('menus.get_image', document_id=menu.id, filename=menu.document.filename) }}" />
+        </div>
+        <div class="content">
+            <div class="header" style="margin-bottom: 5%;">{{ menu.name }}</div>
+            <div class="meta">{{ menu.description }}</div>
+            <div class="meta">{{ menu.priceS }}</div>
+            <div class="meta">{{ menu.priceM }}</div>
+            <div class="meta">{{ menu.priceL }}</div>
+        </div>
+        <div class="extra content">
+            <div class="ui two buttons">
+                <a class="ui primary button" href="{{url_for('admin.menus.menus_edit', menu_id=menu.id)}}">
+                    แก้ไข
+                </a>
+                <a class="ui red button" href="{{url_for('admin.menus.delete', menu_id=menu.id)}}">
+                    ลบข้อมูล
+                </a>
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                <i class="clock outline icon"></i>
+                {{ menu.updated_date.strftime("%H:%M:%S") }}
+            </span>
+            <span>
+                <i class="calendar alternate outline icon"></i>
+                {{ menu.updated_date.strftime("%d-%h-%Y") }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+{% block additional_js %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "coffee"
+version = "0.1.0"
+description = ""
+authors = ["oPECHo <opecho0280@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.2"
+flask-login = "^0.6.2"
+authlib = "^1.2.1"
+pillow = "^10.0.0"
+mongoengine = "^0.27.0"
+pathlib = "^1.0.1"
+markdown = "^3.4.3"
+flask-wtf = "^1.1.1"
+pandas = "^2.0.3"
+flask-me = "^1.0.1"
+flask-caching = "^2.0.2"
+logger = "^1.4"
+flask-bcrypt = "^1.0.1"
+update = "^0.0.1"
+email-validator = "^2.0.0.post2"
+idna = "^3.4"
+certifi = "^2023.7.22"
+requests = "^2.31.0"
+
+
+[tool.poetry.scripts]
+coffee-web = "coffee.cmd.web:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

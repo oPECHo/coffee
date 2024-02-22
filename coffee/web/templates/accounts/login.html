@@ -1,0 +1,54 @@
+{% extends "/base/base-layout.html" %}
+
+{% block body %}
+<div class="ui middle aligned center aligned grid" style="height: 100vh;">
+    <div class="column" style="max-width: 550px;">
+        <h2 class="ui primary header">
+            <i class="unlock alternate icon"></i>
+            <div class="content">
+                Log-in to your account
+            </div>
+        </h2>
+        <form class="ui large form" method="POST">
+            <div class="ui raised segment" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+                <div class="ui error message">
+                    {% if form.errors %}
+                    <div class="header">Form Errors:</div>
+                    <ul class="list">
+                        {% for error in form.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="field">
+                    {{ form.csrf_token }}
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        {{ form.username(class="prompt", placeholder="Username") }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        {{ form.password(class="prompt", placeholder="Password", type="password") }}
+                    </div>
+                </div>
+
+                <button type="submit" class="ui primary fluid large submit button">Login</button>
+            </div>
+            <div class="ui horizontal divider" style="padding: 2%;">
+                Or
+            </div>
+            <div class="middle aligned column">
+                <a class="ui green big button" href="/register">
+                    <i class="signup icon"></i>
+                    Sign Up
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

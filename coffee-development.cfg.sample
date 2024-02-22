@@ -1,0 +1,2 @@
+MONGODB_DB = 'coffeedb'
+SECRET_KEY = 'coffee-secretkey'
