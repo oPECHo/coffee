@@ -3,9 +3,11 @@
 
 {% block body %}
 
-<main style="margin-top: 3em; min-height: 75vh; padding: 3em; background-color: rgb(255, 255, 255)">
+<main
+    style="margin-top: 5em; min-height: 100vh; padding-right: 10em; padding-left: 10em; padding-bottom: 5em; background-color: rgb(252, 252, 252)">
     {% block content %}
     {% endblock content %}
 </main>
 
+{% include "/base/footer.html" %}
 {% endblock %}
