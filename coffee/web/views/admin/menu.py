@@ -108,4 +108,4 @@ def menus_edit(menu_id):
     menu.updated_date = datetime.datetime.now()
     menu.save()
 
-    return redirect(url_for("admin.announce.index"))
+    return redirect(url_for("admin.menus.index"))

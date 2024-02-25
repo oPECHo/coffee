@@ -14,9 +14,6 @@ BaseMenuForm = model_form(
     field_args={
         "title": {"label": "Title"},
         "description": {"label": "Description"},
-        "priceS": {"label": "PriceS"},
-        "priceM": {"label": "PriceM"},
-        "priceL": {"label": "PriceL"},
         "document": {"label": "Upload file"},
     },
 )
