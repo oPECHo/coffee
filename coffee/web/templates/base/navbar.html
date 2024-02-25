@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+                {% if current_user.has_roles("admin") %}
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="{{ url_for('admin.menus.index')}}"><i
+                            class="user shield icon"></i>สำหรับพนักงาน</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="/admin/accounts"><i class="user lock icon"></i>Admin</a>
+                </li>
+                {% endif %}
+                <li class="nav-item ms-3">
+                    <a type="button" class="btn" href="/logout"
+                        style="width: 80px; background-color: #010F3F; color: #fff;"><i
+                            class="sign out alternate icon"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
