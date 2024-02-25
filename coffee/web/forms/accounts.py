@@ -38,3 +38,16 @@ class LoginForm(FlaskForm):
     username = fields.StringField("Username", validators=[validators.DataRequired()])
     password = fields.PasswordField("password", validators=[validators.InputRequired()])
     submit = fields.SubmitField("Login")
+
+class SetupPassword(FlaskForm):
+    password = fields.PasswordField(
+        "New Password", validators=[validators.DataRequired()]
+    )
+    confirm_password = fields.PasswordField(
+        "Confirm Password",
+        validators=[
+            validators.InputRequired(),
+            validators.Length(min=6),
+            validators.EqualTo("password", message="รหัสผ่านไม่ตรงกัน"),
+        ],
+    )

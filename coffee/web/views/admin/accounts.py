@@ -3,26 +3,35 @@ from flask_login import login_user, login_required, logout_user
 
 import datetime
 
-from coffee import models
-from coffee.web import forms
+from coffee.web import models, forms, acl
 
-module = Blueprint("accounts", __name__)
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt()
+
+module = Blueprint("accounts", __name__, url_prefix="/accounts")
 
 
 @module.route("/")
+@acl.roles_required("admin")
 def index():
-    return render_template("accounts/login.html")
+    accounts = models.User.objects()
+    return render_template(
+        "admin/accounts/index.html",
+        accounts=accounts,
+    )
 
 
-@module.route("/register", methods=["GET", "POST"])
-def register():
-    form = forms.accounts.RegistrationForm()
-    user = models.User()
+@module.route("/user/<user_id>/setup_password", methods=["GET", "POST"])
+def setup_password(user_id):
+    user = models.User.objects.get(id=user_id)
+    form = forms.accounts.SetupPassword(obj=user)
 
     if not form.validate_on_submit():
-        return render_template("accounts/register.html", form=form)
+        print(form.errors)
+        return render_template("admin/accounts/setup-password.html", form=form)
 
-    form.populate_obj(user)
+    # Set the hashed password directly to the user's password field
     user.set_password(form.password.data)
     user.save()
 

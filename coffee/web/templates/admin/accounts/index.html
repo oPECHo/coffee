@@ -1,0 +1,38 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<div class="carousel slide" style="height: 5em; margin-top: 7%">
+    <span class="ui huge text">Admin accounts</span>
+</div>
+<div class="ui divider"></div>
+<div class="ui raised segment" style="border: 1px solid #ccc; border-radius: 5px; padding: 20px;">
+    <table class="ui celled selectable inverted table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Setup password</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td data-label="Username">{{ account.username }}</td>
+                <td data-label="Name">{{ account.first_name }} {{ account.last_name }}</td>
+                <td data-label="Email">{{ account.email }}</td>
+                <td data-label="Status">{{ account.status }}</td>
+                <td data-label="Recover"><a href="{{ url_for('admin.accounts.setup_password',user_id=account.id)}}"><i
+                            class="redo icon"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block additional_js %}
+{% endblock %}
