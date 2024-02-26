@@ -164,7 +164,12 @@
                 Imagine-a-Company
             </h1>
             <h2>Do whatever you want when you want to.</h2>
+            {% if current_user %}
+            <a class="ui huge primary button" href="/menus">Get Started <i class="right arrow icon"></i></a>
+            {% else %}
             <a class="ui huge primary button" href="/login">Get Started <i class="right arrow icon"></i></a>
+            {% endif %}
+
         </div>
 
     </div>
