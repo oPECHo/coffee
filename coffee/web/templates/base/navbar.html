@@ -1,9 +1,15 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="/">
-            <img class="ui right spaced avatar image" src="../../static/image/matthew.png" style="height: 30px;">
-            {{ current_user.username }}
-        </a>
+        <div class="ui horizontal list">
+            <div class="item">
+                <img class="ui mini circular image" src="../../static/image/matthew.png" style="height: 3em" />
+                <div class="content">
+                    <div class="ui sub header">{{ current_user.username }}</div>
+                    {{ current_user.email }}
+                </div>
+            </div>
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto align-items-center">
                 {% if current_user.has_roles("admin") %}
