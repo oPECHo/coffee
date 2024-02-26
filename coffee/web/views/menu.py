@@ -35,6 +35,7 @@ def get_image(document_id, filename):
     return response
 
 @module.route("detail/<menu_id>", methods=["GET", "POST"])
+@login_required
 def read(menu_id):
     menu = models.Menu.objects.get(id=menu_id)
     form = forms.coffee.MenuForm(obj=menu)
@@ -43,19 +44,3 @@ def read(menu_id):
         form=form,
         menu=menu,
     )
-
-@module.route("/create", methods=["GET", "POST"])
-def comment():
-    form = forms.coffee.MenuForm()
-    menu = models.Menu()
-
-    if not form.validate_on_submit():
-        return render_template(
-            "admin/menus/menu-create-edit.html",
-            form=form,
-        )
-
-    form.populate_obj(menu)
-    menu.save()
-
-    return redirect(url_for("admin.menus.index"))
