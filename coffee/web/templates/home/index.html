@@ -144,8 +144,8 @@
 
 <!-- Page Contents -->
 <div class="pusher">
-    <div class="ui inverted vertical masthead center aligned segment">
-
+    <div class="ui inverted vertical masthead center aligned segment"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../static/image/Imagehome.png') center/cover; width: 100%;">
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
                 <a class="toc item">
@@ -158,16 +158,18 @@
                 </div>
             </div>
         </div>
-
-        <div class="ui text container">
+        <div class="ui text container" style="margin-top: -5%;">
             <h1 class="ui inverted header">
-                Imagine-a-Company
+                <span>Perfect Roast</span>
+                <p>Get Better Taste Coffee</p>
             </h1>
-            <h2>Do whatever you want when you want to.</h2>
+            <h2 style="margin-top: 2%;">Choose beans and roast your own level</h2>
             {% if current_user %}
-            <a class="ui huge primary button" href="/menus">Get Started <i class="right arrow icon"></i></a>
+            <a class="ui huge primary button" style="margin-top: 5%;" href="/menus">Get Started <i
+                    class="right arrow icon"></i></a>
             {% else %}
-            <a class="ui huge primary button" href="/login">Get Started <i class="right arrow icon"></i></a>
+            <a class="ui huge primary button" style="margin-top: 5%;" href="/login">Get Started <i
+                    class="right arrow icon"></i></a>
             {% endif %}
 
         </div>
