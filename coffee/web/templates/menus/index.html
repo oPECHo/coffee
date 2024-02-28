@@ -1,8 +1,8 @@
 {% extends "base/default-page.html" %}
 
 {% block content %}
-<div class="ui stackable grid">
-    <div class="twelve wide column">
+<div class="ui stackable grid" style="justify-content: center;">
+    <div class="nine wide column">
         <div class="ui segment">
             <div class="ui three column stackable grid">
                 {% for menu in menus | sort(attribute='updated_date', reverse=True) %}
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="four wide column">
+    <div class="three wide column">
         <div class="ui segment">
             <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Locate coffee places around</p>
             <div class="mapouter">
