@@ -14,6 +14,7 @@ module = Blueprint("accounts", __name__, url_prefix="/accounts")
 
 @module.route("/")
 @acl.roles_required("admin")
+@login_required
 def index():
     accounts = models.User.objects()
     return render_template(
@@ -23,6 +24,8 @@ def index():
 
 
 @module.route("/user/<user_id>/setup_password", methods=["GET", "POST"])
+@acl.roles_required("admin")
+@login_required
 def setup_password(user_id):
     user = models.User.objects.get(id=user_id)
     form = forms.accounts.SetupPassword(obj=user)
@@ -36,3 +39,13 @@ def setup_password(user_id):
     user.save()
 
     return redirect(url_for("accounts.login"))
+
+@module.route("/<user_id>/delete", methods=["GET", "POST"])
+@acl.roles_required("admin")
+@login_required
+def delete(user_id):
+    user = models.User.objects.get(id=user_id)
+
+    user.delete()
+
+    return redirect(url_for("admin.accounts.index"))
