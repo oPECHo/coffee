@@ -14,6 +14,7 @@
                 <th>Email</th>
                 <th>Status</th>
                 <th>Setup password</th>
+                <th>Delete account</th>
             </tr>
         </thead>
         <tbody>
@@ -23,14 +24,54 @@
                 <td data-label="Name">{{ account.first_name }} {{ account.last_name }}</td>
                 <td data-label="Email">{{ account.email }}</td>
                 <td data-label="Status">{{ account.status }}</td>
-                <td data-label="Recover"><a href="{{ url_for('admin.accounts.setup_password',user_id=account.id)}}"><i
-                            class="redo icon"></i></a>
+                <td data-label="Recover">
+                    <a href="{{ url_for('admin.accounts.setup_password', user_id=account.id) }}">
+                        <i class="redo icon"></i> Recover
+                    </a>
                 </td>
+
+                <td>
+                    <a class="ui red button" href="{{ url_for('admin.accounts.delete', user_id=account.id) }}">
+                        <i class="trash icon"></i> Delete
+                    </a>
+                </td>
+
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+<style>
+    /* สีพื้นหลังปุ่ม Recover */
+    td[data-label="Recover"] a {
+        background-color: #4CAF50;
+        /* เปลี่ยนสีตามความต้องการ */
+        color: white;
+        /* สีข้อความ */
+        padding: 8px 16px;
+        /* ปรับขนาดของปุ่ม */
+        border-radius: 4px;
+        /* ทำให้มีมุมโค้ง */
+        text-decoration: none;
+        /* ลบขีดเส้นใต้ข้อความ */
+        display: inline-block;
+    }
+
+    /* สีพื้นหลังปุ่ม Delete */
+    td a.ui.red.button {
+        background-color: #f44336;
+        /* เปลี่ยนสีตามความต้องการ */
+        color: white;
+        /* สีข้อความ */
+        padding: 8px 16px;
+        /* ปรับขนาดของปุ่ม */
+        border-radius: 4px;
+        /* ทำให้มีมุมโค้ง */
+        text-decoration: none;
+        /* ลบขีดเส้นใต้ข้อความ */
+        display: inline-block;
+    }
+</style>
 
 {% endblock %}
 
