@@ -1,0 +1,32 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<div class="carousel slide" style="height: 5em; margin-top: 5%">
+
+    {% if 'create' in request.path %}
+    <span class="ui huge text">New QRcode bot line</span>
+    {% else %}
+    <span class="ui huge text">Edit QRcode bot line</span>
+    {% endif %}
+
+</div>
+<div class="ui divider"></div>
+<form method="POST" enctype="multipart/form-data">
+    <div class="ui placeholder segment">
+        {{ form.csrf_token }}
+        <div class="ui icon header">
+            <i class="image file outline icon"></i>
+        </div>
+        <div class="ui button">{{ form.document_upload }}</div>
+    </div>
+    <div>
+        {% if 'create' in request.path %}
+        <button type="submit" class="ui green left attached button">Create</button>
+        {% else %}
+        <button type="submit" class="ui green left attached button">update</button>
+        {% endif %}
+        <a class="right red attached ui button" href="/admin/qrcodes">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

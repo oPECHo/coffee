@@ -1,0 +1,41 @@
+{% extends "base/default-page.html" %}
+
+{% block content %}
+<a class="fluid huge ui inverted primary button" href="{{ url_for('admin.qrcodes.qrcode_create') }}"
+    style="margin-bottom: 1%;">Create</a>
+<div class="ui four cards">
+    {% for qrcode in qrcodes | sort(attribute='updated_date', reverse=True) %}
+
+    <div class="card">
+        <div class="image">
+            <img
+                src="{{ url_for('admin.qrcodes.get_image', document_id=qrcode.id, filename=qrcode.document.filename) }}" />
+        </div>
+        <div class="extra content">
+            <div class="ui two buttons">
+                <a class="ui primary button" href="{{url_for('admin.qrcodes.qrcode_edit', qrcode_id=qrcode.id)}}">
+                    แก้ไข
+                </a>
+                <a class="ui red button" href="{{url_for('admin.qrcodes.delete', qrcode_id=qrcode.id)}}">
+                    ลบข้อมูล
+                </a>
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                <i class="clock outline icon"></i>
+                {{ qrcode.updated_date.strftime("%H:%M:%S") }}
+            </span>
+            <span>
+                <i class="calendar alternate outline icon"></i>
+                {{ qrcode.updated_date.strftime("%d-%h-%Y") }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+{% block additional_js %}
+
+{% endblock %}

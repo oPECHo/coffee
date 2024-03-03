@@ -1,3 +1,3 @@
-from . import accounts, coffee
+from . import accounts, coffee, qrcodes
 
-__all__ = [accounts, coffee]
+__all__ = [accounts, coffee, qrcodes]

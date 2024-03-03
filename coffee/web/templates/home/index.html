@@ -186,9 +186,37 @@
                         กาแฟเป็นเครื่องดื่มที่ได้รับความนิยมมากที่สุดในโลกชนิดหนึ่งเช่นเดียวกับชาและน้ำ นอกจากนี้
                         กาแฟยังเป็นผลผลิตทางการเกษตรที่มีการส่งออกมากเป็นอันดับที่หกของโลก</p>
                 </div>
+                <style>
+                    .ui.card {
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: box-shadow 0.3s ease-in-out;
+                    }
+
+                    .ui.card:hover {
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                    }
+                </style>
+
                 <div class="six wide right floated column">
-                    <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
+                    <div class="ui labeled button" tabindex="0">
+                        <div class="ui green button">
+                            <i class="heart icon"></i> QRcode Bot Line
+                        </div>
+                        <a class="ui basic green left pointing label">
+                            COFFEE_BOY
+                        </a>
+                    </div>
+                    {% for qrcode in qrcodes | sort(attribute='updated_date', reverse=True) %}
+                    <div class="ui card">
+                        <div class="image">
+                            <img class="qr-code-img"
+                                src="{{ url_for('home.get_image', document_id=qrcode.id, filename=qrcode.document.filename) }}" />
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
+
+
             </div>
         </div>
     </div>

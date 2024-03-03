@@ -1,6 +1,7 @@
 from flask_mongoengine import MongoEngine
 from .user import User
 from .coffee import Menu
+from .qrbot import Bot
 
 db = MongoEngine()
 
