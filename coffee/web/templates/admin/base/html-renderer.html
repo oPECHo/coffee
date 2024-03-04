@@ -1,0 +1,18 @@
+{% import '/admin/base/error-handler.html' as eh %}
+
+{% macro render_field(field, class_='') -%}
+{%- set style = '%s' | format(eh.get_validate_class(field.errors)) -%}
+{%- if class_ != '' -%}
+{%- set style = '%s %s' | format(class_, eh.get_validate_class(field.errors)) -%}
+{%- endif -%}
+<div class="field">
+    {{ field.label }}
+    {{ field(class_=style) }}
+</div>
+{{ eh.get_error_messages(field.errors) }}
+{%- endmacro %}
+
+
+{% macro render_multiple_select(field) -%}
+{{ render_field(field, class_='ui fluid dropdown') }}
+{%- endmacro %}

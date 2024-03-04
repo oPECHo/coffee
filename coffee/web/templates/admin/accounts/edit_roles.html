@@ -1,0 +1,23 @@
+{% extends '/admin/accounts/index.html' %}
+{% import '/admin/base/html-renderer.html' as renderer %}
+
+{% block content %}
+<div>
+    <form method="POST" class="ui big form" style="font-family: 'Kanit', sans-serif;">
+
+        {{ form.hidden_tag() }}
+        {{ renderer.render_multiple_select(form.roles) }}
+
+        <button class="ui primary button" type="submit" style="font-family: 'Kanit', sans-serif;">ยืนยันข้อมูล</button>
+    </form>
+</div>
+{% endblock content %}
+{% block additional_js %}
+
+<script>
+    $('#roles')
+        .dropdown()
+        ;
+</script>
+
+{% endblock %}

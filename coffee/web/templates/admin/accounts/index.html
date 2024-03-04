@@ -15,6 +15,7 @@
                 <th>Status</th>
                 <th>Setup password</th>
                 <th>Delete account</th>
+                <th>Edit Roles</th>
             </tr>
         </thead>
         <tbody>
@@ -25,14 +26,22 @@
                 <td data-label="Email">{{ account.email }}</td>
                 <td data-label="Status">{{ account.status }}</td>
                 <td data-label="Recover">
+                    {% if account.has_roles("admin") %}
                     <a href="{{ url_for('admin.accounts.setup_password', user_id=account.id) }}">
                         <i class="redo icon"></i> Recover
                     </a>
+                    {% endif %}
                 </td>
 
                 <td>
                     <a class="ui red button" href="{{ url_for('admin.accounts.delete', user_id=account.id) }}">
                         <i class="trash icon"></i> Delete
+                    </a>
+                </td>
+                <td data-label="Edit Roles">
+                    <a class="ui blue icon button"
+                        href="{{ url_for('admin.accounts.edit_roles', user_id=account.id) }}">
+                        <i class="edit icon"></i>
                     </a>
                 </td>
 
