@@ -10,7 +10,11 @@
                 Sign-Up to your account
             </div>
         </h2>
-
+        {% if msg_error %}
+        <div class="ui negative message">
+            <div class="header">{{ msg_error }}</div>
+        </div>
+        {% endif %}
         <form method="POST" class="ui form" action="{{ request.path }}">
             {{ form.csrf_token }}
 

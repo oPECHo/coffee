@@ -9,11 +9,15 @@
             <div class="content">
                 Sign-Up to your account
             </div>
+            {% if msg_error %}
+            <div class="ui negative message">
+                <div class="header">{{ msg_error }}</div>
+            </div>
+            {% endif %}
         </h2>
 
         <form method="POST" class="ui form" action="{{ request.path }}">
             {{ form.csrf_token }}
-
             <div class="field">
                 <div class="ui left icon input">
                     <i class="user icon"></i>
@@ -48,7 +52,6 @@
                     {{ form.last_name(class="prompt" ,placeholder="Last name") }}
                 </div>
             </div>
-
             <div class="field">
                 <div class="d-flex justify-content-center mt-4">
                     <button type="submit" class="ui primary button">Register</button>

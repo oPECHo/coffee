@@ -21,6 +21,18 @@ def register():
 
     if not form.validate_on_submit():
         return render_template("accounts/register.html", form=form)
+    
+    check_user = models.User.objects(username=form.username.data)
+    check_email = models.User.objects(email=form.email.data)
+
+    msg_error = ''
+    if check_user:
+        msg_error = "This username is already in use"
+        return render_template("accounts/register.html", form=form, user=user, msg_error=msg_error)
+    
+    if check_email:
+        msg_error = "This email is already in use"
+        return render_template("accounts/register.html", form=form, user=user, msg_error=msg_error)
 
     form.populate_obj(user)
     user.set_password(form.password.data)
